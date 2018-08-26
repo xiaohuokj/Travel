@@ -1,0 +1,37 @@
+1. 因为是移动端项目，所以在index.html中配置
+<meta name="viewport" content="width=device-width,initial-scale=1.0,
+    minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+2. 在assets目录下新增styles文件夹，导入border.css(解决根据手机不同分辨率下1px像素问题)
+导入reset.css(重置css样式，使代码兼容各浏览器)   这2个文件分别在入口文件main.js 中引入
+3. 移动端300mm延迟问题
+在命令行中 执行 cnpm install fastclick --save 安装依赖包
+在main.js 中引入     import fastClick from 'fastclick'     fastClick.attach(document.body) 绑定到body上
+4. 在代码中使用stylus
+在命令行中执行 cnpm install stylus --save
+还需要在执行一个 cnpm install stylus-loader --save
+使组件样式只对当前组件使用，不影响其他页面在 style 中加入 scoped
+<style lang="stylus" scoped>
+
+</style>
+
+5. 设计师给2倍图，在css 中如何换算
+1rem = html的font-size =50px
+例如：某一个区域高度像素为86px  ，那么 86/100 = 0.86rem
+
+6. 项目中引入css简单方式
+// @import '../../../assets/styles/varibles.styl' // 方法一  一级一级上上找麻烦
+// @import '~@/assets/styles/varibles.styl' // 方法二
+  /* 方法三， 需要在 webpack.base.conf.js 中配置 'styles': resolve('src/assets/styles')
+     要把所有用到引入css 的位置改为styles/xxx.css 如：main.js中的使用 改了webpack.base.conf.js要重启服务生效
+  */
+  @import '~styles/varibles.styl'
+
+7. 项目中轮播图插件 github搜索vue-awesome-swiper
+最新版有些bug ，建议使用这个版本
+ cnpm install vue-awesome-swiper@2.6.7 --save
+
+8. 安装axios
+cnpm install axios --save
+
+9. 首页真实数据抓取
+轮播图：https://zt.dujia.qunar.com/api/qunar_index_left.php?callback=jQuery172014697225573526995_1535282450854&_=1535282451375
