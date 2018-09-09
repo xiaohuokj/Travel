@@ -38,9 +38,6 @@
         })
         return pages
       }
-    },
-    mounted() {
-      console.log(this.list)
     }
   }
 </script>
