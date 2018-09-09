@@ -22,5 +22,10 @@ export default new Router({
       name: 'Detail',
       component: Detail
     }
-  ]
+  ],
+  // 每次做路由切换，将页面始终是在顶部， 此功能可以做用户在某个页面看某个商品
+  // 然后点击查看详情，退回来之后记录位置使用
+  scrollBehavior (to, from, savedPosition) {
+    return { x: 0, y: 0 }
+  }
 })
