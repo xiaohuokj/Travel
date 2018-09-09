@@ -7,7 +7,10 @@
         @touchmove="handleTouchMove"
         @touchend="handleTouchEnd"
         :ref = item
-        :key="item">{{item}}</li>
+        :class="{'current': item===alphabetcolor}"
+        :key="item">
+      {{item}}
+    </li>
   </ul>
 </template>
 
@@ -19,6 +22,7 @@
     },
     data() {
       return {
+        alphabetcolor: '',
         touchStatus: false,
         startY: 0,
         timer: null // 事件节流 （属于优化）
@@ -38,6 +42,7 @@
     },
     methods: {
       handleLerClick(e) {
+        this.alphabetcolor = e.target.innerText
         this.$emit('change', e.target.innerText)
       },
       handleTouchStart() {
@@ -80,4 +85,6 @@
       line-height: .4rem;
       text-align: center;
       color: $bgColor
+    .current
+      color: red;
 </style>
