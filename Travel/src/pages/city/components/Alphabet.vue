@@ -1,13 +1,13 @@
 <template>
   <ul class="list">
     <li class="item"
-        v-for="item in letters"
+        v-for="(item, index) in letters"
         @click="handleLerClick"
         @touchstart.prevent="handleTouchStart"
         @touchmove="handleTouchMove"
         @touchend="handleTouchEnd"
         :ref = item
-        :class="{'current': item===alphabetcolor}"
+        :class="{'current': item===alphabetcolor || index===alphabetcolor}"
         :key="item">
       {{item}}
     </li>
@@ -54,10 +54,12 @@
           if (this.timer) {
             clearTimeout(this.timer)
           }
+          this.alphabetcolor = ''
           this.timer = setTimeout(() => {
             const touchY = e.touches[0].clientY - 79
             const index = Math.floor((touchY - this.startY) / 20)
             if (index >= 0 && index < this.letters.length) {
+              this.alphabetcolor = index
               this.$emit('change', this.letters[index])
             }
           }, 16)
